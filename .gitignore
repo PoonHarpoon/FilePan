@@ -1,0 +1,15 @@
+/.gradle/
+/.idea/
+/.kotlin/
+/build/
+/captures/
+/local.properties
+/signing.jks
+/signing.properties
+.DS_Store
+*.iml
+/.direnv/
+/result
+/.claude/worktrees/
+# Core dumps from crashed host tests and tools.
+core.[0-9]*

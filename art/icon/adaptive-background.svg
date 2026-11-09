@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+  ~ Copyright (c) 2026 FilePan contributors
+  -->
+
+<!-- The adaptive icon's background layer: the acid ground. 108x108. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="432" height="432" viewBox="0 0 108 108">
+  <title>Filepan adaptive icon background</title>
+  <rect width="108" height="108" fill="#C8FF00"/>
+</svg>

@@ -1,0 +1,28 @@
+FilePan
+Copyright (C) 2026 FilePan contributors (see AUTHORS)
+
+FilePan's own code is licensed under the GNU Affero General Public License,
+version 3 or later (LICENSE).
+
+Based on the work done on Material Files (https://github.com/zhanghai/MaterialFiles)
+by Hai Zhang, unassociated with this project.
+
+File headers
+------------
+
+Every FilePan source file carries:
+
+    SPDX-License-Identifier: AGPL-3.0-or-later
+    Copyright (c) <year> FilePan contributors
+
+Third-party software
+--------------------
+
+Third-party libraries, including the native libraries built from source under
+third_party/, and bundled assets such as fonts keep their own licenses. They are
+listed in app/src/main/assets/licenses/licenses.xml and shown in the app under
+About > Licenses.
+
+The table of file types and MIME types is generated from the shared-mime-info
+database (https://gitlab.freedesktop.org/xdg/shared-mime-info), which is
+licensed under the GNU General Public License, version 2 or later.

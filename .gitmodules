@@ -1,0 +1,40 @@
+[submodule "third_party/libarchive"]
+	path = third_party/libarchive
+	url = https://github.com/libarchive/libarchive
+	shallow = true
+[submodule "third_party/zstd"]
+	path = third_party/zstd
+	url = https://github.com/facebook/zstd
+	shallow = true
+[submodule "third_party/lz4"]
+	path = third_party/lz4
+	url = https://github.com/lz4/lz4
+	shallow = true
+[submodule "third_party/xz"]
+	path = third_party/xz
+	url = https://github.com/tukaani-project/xz
+	shallow = true
+[submodule "third_party/bzip2"]
+	path = third_party/bzip2
+	url = https://gitlab.com/bzip2/bzip2.git
+	shallow = true
+[submodule "third_party/mbedtls"]
+	path = third_party/mbedtls
+	url = https://github.com/Mbed-TLS/mbedtls
+	shallow = true
+[submodule "third_party/libssh"]
+	path = third_party/libssh
+	url = https://gitlab.com/libssh/libssh-mirror.git
+	shallow = true
+[submodule "third_party/freetype"]
+	path = third_party/freetype
+	url = https://gitlab.freedesktop.org/freetype/freetype.git
+	shallow = true
+[submodule "third_party/harfbuzz"]
+	path = third_party/harfbuzz
+	url = https://github.com/harfbuzz/harfbuzz
+	shallow = true
+[submodule "third_party/shared-mime-info"]
+	path = third_party/shared-mime-info
+	url = https://gitlab.freedesktop.org/xdg/shared-mime-info.git
+	shallow = true

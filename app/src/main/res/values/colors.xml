@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+  ~ Copyright (c) 2026 FilePan contributors
+  -->
+
+<resources>
+    <!-- Acid's ground, the default theme's. -->
+    <color name="window_background">#060708</color>
+    <!-- Behind the launcher icon: art/icon/adaptive-background.svg. -->
+    <color name="launcher_icon_background">#C8FF00</color>
+</resources>

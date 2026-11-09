@@ -1,0 +1,176 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (c) 2026 FilePan contributors
+
+# FilePan's decisions on top of freedesktop.org shared-mime-info, read by generate_mime_table.py.
+#
+#   ext <extension> <type> [<Kind>]  The type for an extension: an override, a tie-break or an
+#                                    addition. The type must be a shared-mime-info type or alias,
+#                                    unless it's an addition with an explicit kind.
+#   kind <type> <Kind>               The kind of a type, where the derivation gets it wrong.
+#   archive <type>                   A type FilePan's libarchive build can open (kind Archive).
+#
+# Kinds: Directory Image Video Audio Archive Apk Pdf Document Spreadsheet Presentation Text Code
+# Font Other.
+#
+# The generator fails on a line that changes nothing, on an unknown type, and on an extension
+# shared-mime-info maps to several types at the same weight without an ext line here. Types are
+# lower-cased on output, as Android's MimeTypeMap spells them (it rejects upper case) and as
+# Intent.normalizeMimeType makes them: intent filters compare types exactly, and Android tells
+# apps to write theirs in lower case. A compound extension (tar.gz) must be an archive; other
+# compressed files go by their last extension.
+
+# --- Overrides: the spelling Android (MediaStore, the certificate installer) and the apps that
+# receive open and share intents match on. Intent filters compare types exactly, so the
+# shared-mime-info canonical name could drop apps from the chooser. All are its aliases.
+
+ext heic    image/heic
+ext mkv     video/x-matroska
+ext mka     audio/x-matroska
+ext wav     audio/x-wav
+ext avi     video/avi
+# Voice recordings: audio, not the 3GPP video type.
+ext 3ga     audio/3gpp
+# USB writer apps filter on it.
+ext iso     application/x-iso9660-image
+ext p12     application/x-pkcs12
+ext pfx     application/x-pkcs12
+# .tbz, .tar.bz and .bz are bzip2 in practice (libarchive finds bzip2 by its content), and
+# libarchive can't read bzip1.
+ext tbz     application/x-bzip2-compressed-tar
+ext tar.bz  application/x-bzip2-compressed-tar
+ext bz      application/x-bzip2
+
+# --- Additions shared-mime-info lacks.
+
+ext kts         text/x-kotlin
+ext swift       text/x-swift                Code
+ext heics       image/heic-sequence
+ext heifs       image/heif-sequence
+ext azw         application/vnd.amazon.ebook   Document
+ext eot         application/vnd.ms-fontobject  Font
+ext m4p         audio/mp4
+ext mpv         video/x-matroska
+# For the certificate installer; shared-mime-info only has the ten-way tie below.
+ext pem         application/x-pem-file      Other
+# Configuration files, so they open in the editor.
+ext ini         text/plain
+ext conf        text/plain
+ext cfg         text/plain
+ext properties  text/plain
+
+# --- Tie-breaks. shared-mime-info tells these apart by content, which FilePan doesn't read, so
+# pick what is most likely on a phone.
+
+ext 3ds     application/x-nintendo-3ds-rom
+# The certificate installer's type, for every certificate extension.
+ext cer     application/x-x509-ca-cert
+ext cert    application/x-x509-ca-cert
+ext crt     application/x-x509-ca-cert
+ext der     application/x-x509-ca-cert
+ext dot     application/msword-template
+ext dts     audio/vnd.dts
+ext gbr     application/vnd.gerber
+ext gpg     application/pgp-encrypted
+ext hdf     application/x-hdf
+ext jpx     image/jpx
+ext kexi    application/x-kexiproject-sqlite3
+ext m       text/x-objcsrc
+# Players handle playlists, and Audio keeps a tap from opening them in the editor.
+ext m3u     audio/x-mpegurl
+ext m3u8    audio/x-mpegurl
+ext mm      text/x-objc++src
+ext mo      application/x-gettext-translation
+# Android uses audio/mpeg for MPEG audio layer 2.
+ext mp2     audio/mpeg
+ext mpl     video/mp2t
+ext obj     model/obj
+ext ogg     audio/ogg
+ext otf     font/otf
+ext p8      application/pkcs8
+ext pcf     application/x-font-pcf
+ext pdb     chemical/x-pdb
+ext pgp     application/pgp-encrypted
+ext pm      application/x-perl
+ext pot     application/vnd.ms-powerpoint
+# An e-book on a phone, not a Palm database.
+ext prc     application/x-mobipocket-ebook
+ext psf     audio/x-psf
+# SSH keys, for SFTP: they open in the editor.
+ext pub     text/x-ssh-public-key
+ext qif     application/x-qw
+ext rvz     application/x-wii-rom
+ext service text/x-systemd-unit
+ext sf3     application/x.sf3-archive
+# Subtitles next to a video.
+ext smi     application/x-sami
+ext spx     audio/x-speex+ogg
+ext sti     application/vnd.sun.xml.impress.template
+ext sub     text/x-microdvd
+ext t       application/x-perl
+ext tap     application/x-spectrum-tap
+# MPEG transport streams on a phone; TypeScript and Qt Linguist files are rarer there.
+ext ts      video/mp2t
+ext ui      application/x-designer
+ext vb      text/x-vb
+ext vhd     application/x-vhd-disk
+ext vst     application/vnd.visio
+ext wia     application/x-wii-rom
+ext wks     application/vnd.ms-works
+
+# --- Kinds.
+
+kind application/pdf                            Pdf
+kind application/vnd.android.package-archive    Apk
+# E-books; most others have an office-document icon in shared-mime-info.
+kind application/x-fictionbook+xml              Document
+kind application/x-zip-compressed-fb2           Document
+kind image/vnd.djvu                             Document
+# Markdown opens in the editor.
+kind text/markdown                              Text
+kind text/html                                  Code
+kind text/css                                   Code
+kind application/yaml                           Code
+kind application/toml                           Code
+kind application/sql                            Code
+# Mail opens in a mail app, not the editor.
+kind message/rfc822                             Other
+kind application/mbox                           Other
+
+# --- Archives: exactly what FilePan's libarchive build opens (archive_read_support_*_all). Zip
+# subclasses (APK, EPUB, Office) are not archives here. Not brotli, bzip1, bzip3, lrzip, rzip,
+# LZO or xar: libarchive is built without them (see app/src/main/cpp/third_party/ThirdParty.cmake).
+
+archive application/zip
+archive application/x-7z-compressed
+archive application/vnd.rar
+archive application/x-tar
+archive application/x-ustar
+archive application/gzip
+archive application/x-bzip2
+archive application/x-xz
+archive application/zstd
+archive application/x-lz4
+archive application/x-lzip
+archive application/x-lzma
+archive application/x-compress
+archive application/x-cpio
+archive application/x-cpio-compressed
+archive application/x-bcpio
+archive application/x-sv4cpio
+archive application/x-sv4crc
+archive application/vnd.efi.iso
+archive application/java-archive
+archive application/vnd.debian.binary-package
+archive application/x-rpm
+archive application/x-source-rpm
+archive application/vnd.ms-cab-compressed
+archive application/x-lha
+archive application/x-archive
+archive application/x-compressed-tar
+archive application/x-bzip2-compressed-tar
+archive application/x-xz-compressed-tar
+archive application/x-zstd-compressed-tar
+archive application/x-lz4-compressed-tar
+archive application/x-lzip-compressed-tar
+archive application/x-lzma-compressed-tar
+archive application/x-tarz

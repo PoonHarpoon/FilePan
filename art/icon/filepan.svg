@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+  ~ Copyright (c) 2026 FilePan contributors
+  -->
+
+<!-- The FilePan icon: a black pan, handle up, holding a white page, on an acid squircle. 72x72, the
+     adaptive icon's 108x108 cropped to its visible part. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="18 18 72 72">
+  <title>Filepan icon</title>
+  <path fill="#C8FF00" d="M54 18C80 18 90 28 90 54C90 80 80 90 54 90C28 90 18 80 18 54C18 28 28 18 54 18Z"/>
+  <path fill="#0A0A0A" fill-rule="evenodd" d="M43.422 46.69L49.958 46.69L49.958 34.392A4.042 4.042 0 0 1 58.042 34.392L58.042 46.69L64.578 46.69A6.02 6.02 0 0 1 70.34 50.99L77.564 74.382A2.58 2.58 0 0 1 75.07 77.65L32.93 77.65A2.58 2.58 0 0 1 30.436 74.382L37.66 50.99A6.02 6.02 0 0 1 43.422 46.69ZM52.022 34.822A1.978 1.978 0 0 1 55.978 34.822A1.978 1.978 0 0 1 52.022 34.822ZM57.44 52.71L57.44 57.87L62.6 57.87Z"/>
+  <path fill="#FFFFFF" d="M45.4 52.71L57.44 52.71L57.44 57.87L62.6 57.87L62.6 71.63L45.4 71.63Z"/>
+</svg>

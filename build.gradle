@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 FilePan contributors
+
+plugins {
+    alias(libs.plugins.android.application) apply false
+    // Only here to put the Kotlin Gradle plugin on the classpath, which pins the Kotlin
+    // version used by AGP's built-in Kotlin support.
+    alias(libs.plugins.kotlin.parcelize) apply false
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.layout.buildDirectory
+}

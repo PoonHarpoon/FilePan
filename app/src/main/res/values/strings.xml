@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+  ~ Copyright (c) 2026 FilePan contributors
+  -->
+
+<!-- The UI's strings live in the native core; Android only needs the launcher label. -->
+<resources>
+    <string name="app_name">FilePan</string>
+    <!-- The notification channel for copy, move and other file jobs. -->
+    <string name="jobs_channel">File operations</string>
+    <!-- The share sheet's label for FilePan. -->
+    <string name="save_to_filepan">Save to FilePan</string>
+</resources>

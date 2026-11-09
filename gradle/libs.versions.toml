@@ -1,0 +1,10 @@
+[versions]
+agp = "9.4.1"
+kotlin = "2.4.21"
+
+[libraries]
+junit = "junit:junit:4.13.2"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }

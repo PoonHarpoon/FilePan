@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later
+  ~ Copyright (c) 2026 FilePan contributors
+  -->
+
+<notices>
+
+    <!-- License texts, in this directory. Each <license> named below must have one (screens_test checks). -->
+    <text license="GNU Affero General Public License 3.0" file="license_agpl3.txt" />
+    <text license="GNU General Public License 2.0 or later" file="license_gpl2.txt" />
+    <text license="GNU Lesser General Public License 2.1" file="license_lgpl21.txt" />
+    <text license="Apache Software License 2.0" file="license_apache2.txt" />
+    <text license="BSD 2-Clause License" file="license_bsd2.txt" />
+    <text license="BSD 3-Clause License" file="license_bsd3.txt" />
+    <text license="BSD Zero Clause License" file="license_0bsd.txt" />
+    <text license="MIT License" file="license_mit.txt" />
+    <text license="bzip2 License" file="license_bzip2.txt" />
+    <text license="FreeType License" file="license_ftl.txt" />
+    <text license="HarfBuzz License" file="license_harfbuzz.txt" />
+    <text license="SIL Open Font License 1.1" file="license_ofl.txt" />
+
+    <notice>
+        <name>FilePan</name>
+        <url>https://github.com/PoonHarpoon/FilePan</url>
+        <copyright>Copyright 2026 FilePan contributors. Distributed under the GNU Affero General Public License 3.0 or later.</copyright>
+        <license>GNU Affero General Public License 3.0</license>
+    </notice>
+
+    <!-- Native libraries (third_party/). -->
+
+    <notice>
+        <name>libarchive</name>
+        <url>https://github.com/libarchive/libarchive</url>
+        <copyright>Copyright 2003 Tim Kientzle</copyright>
+        <license>BSD 2-Clause License</license>
+    </notice>
+
+    <notice>
+        <name>bzip2</name>
+        <url>https://gitlab.com/bzip2/bzip2</url>
+        <copyright>Copyright 1996-2019 Julian R Seward</copyright>
+        <license>bzip2 License</license>
+    </notice>
+
+    <notice>
+        <name>lz4</name>
+        <url>https://github.com/lz4/lz4</url>
+        <copyright>Copyright 2011 Yann Collet</copyright>
+        <license>BSD 2-Clause License</license>
+    </notice>
+
+    <notice>
+        <name>XZ Utils (liblzma)</name>
+        <url>https://tukaani.org/xz/</url>
+        <copyright>Copyright The XZ Utils authors and contributors</copyright>
+        <license>BSD Zero Clause License</license>
+    </notice>
+
+    <notice>
+        <name>zstd</name>
+        <url>https://github.com/facebook/zstd</url>
+        <copyright>Copyright Meta Platforms, Inc. and affiliates</copyright>
+        <license>BSD 3-Clause License</license>
+    </notice>
+
+    <notice>
+        <name>Mbed TLS</name>
+        <url>https://github.com/Mbed-TLS/mbedtls</url>
+        <copyright>Copyright The Mbed TLS Contributors</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <notice>
+        <name>libssh</name>
+        <url>https://www.libssh.org</url>
+        <copyright>Copyright 2003-2026 the libssh team</copyright>
+        <license>GNU Lesser General Public License 2.1</license>
+    </notice>
+
+    <notice>
+        <name>FreeType</name>
+        <url>https://freetype.org</url>
+        <copyright>Portions of this software are copyright © 1996-2026 The FreeType Project (www.freetype.org). All rights reserved.</copyright>
+        <license>FreeType License</license>
+    </notice>
+
+    <notice>
+        <name>HarfBuzz</name>
+        <url>https://harfbuzz.github.io</url>
+        <copyright>Copyright © 2010-2022 Google, Inc., © 2005-2023 Behdad Esfahbod, © 2004-2023 Red Hat, Inc. and the other HarfBuzz authors</copyright>
+        <license>HarfBuzz License</license>
+    </notice>
+
+    <notice>
+        <name>HarfBuzz Universal Shaping Engine data</name>
+        <url>https://github.com/harfbuzz/harfbuzz/tree/main/src/ms-use</url>
+        <copyright>Copyright (c) Microsoft Corporation</copyright>
+        <license>MIT License</license>
+    </notice>
+
+    <notice>
+        <name>shared-mime-info</name>
+        <url>https://gitlab.freedesktop.org/xdg/shared-mime-info</url>
+        <copyright>The freedesktop.org shared MIME database, merged from several MIME databases released under the GNU GPL</copyright>
+        <license>GNU General Public License 2.0 or later</license>
+    </notice>
+
+    <!-- Bundled fonts and icons. -->
+
+    <notice>
+        <name>Archivo</name>
+        <url>https://github.com/Omnibus-Type/Archivo</url>
+        <copyright>Copyright 2020 The Archivo Project Authors</copyright>
+        <license>SIL Open Font License 1.1</license>
+    </notice>
+
+    <notice>
+        <name>JetBrains Mono</name>
+        <url>https://github.com/JetBrains/JetBrainsMono</url>
+        <copyright>Copyright 2020 The JetBrains Mono Project Authors</copyright>
+        <license>SIL Open Font License 1.1</license>
+    </notice>
+
+    <notice>
+        <name>Material Symbols</name>
+        <url>https://github.com/google/material-design-icons</url>
+        <copyright>Copyright Google LLC</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+    <!-- Kotlin runtime. -->
+
+    <notice>
+        <name>Kotlin Standard Library</name>
+        <url>https://github.com/JetBrains/kotlin</url>
+        <copyright>Copyright 2010-2026 JetBrains s.r.o. and Kotlin Programming Language contributors</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
+
+</notices>

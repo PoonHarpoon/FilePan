@@ -1,0 +1,130 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2026 FilePan contributors
+
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+// Release signing values come from signing.properties in the repository root, then from the
+// environment, then from a prompt if a console is attached. signing.properties takes storeFile,
+// storePassword, keyAlias and keyPassword; the environment variables are STORE_FILE,
+// STORE_PASSWORD, KEY_ALIAS and KEY_PASSWORD.
+def signingFile = rootProject.file('signing.properties')
+def signingProps = new Properties()
+if (signingFile.exists()) {
+    signingFile.withInputStream { signingProps.load(it) }
+}
+
+def signingValue = { String key, String envName, String label ->
+    signingProps.getProperty(key) ?: System.getenv(envName) ?: System.console()?.readLine("\n${label}: ")
+}
+
+android {
+    namespace = 'app.phsp.filepan'
+    buildToolsVersion = '37.0.0'
+    compileSdk = 37
+    compileSdkMinor = 2
+    ndkVersion = '30.0.16248370'
+
+    defaultConfig {
+        applicationId = 'app.phsp.filepan'
+        minSdk = 36
+        // targetSdk stays below 37 until ACCESS_LOCAL_NETWORK is handled.
+        //noinspection OldTargetApi
+        targetSdk = 36
+        versionCode = 1
+        versionName = '0.1.0'
+
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=c++_static'
+            }
+        }
+    }
+
+    signingConfigs {
+        release {
+            def store = signingValue('storeFile', 'STORE_FILE', 'Store file')
+            if (store != null) {
+                storeFile = rootProject.file(store)
+            }
+            storePassword = signingValue('storePassword', 'STORE_PASSWORD', 'Store password')
+            keyAlias = signingValue('keyAlias', 'KEY_ALIAS', 'Key alias')
+            keyPassword = signingValue('keyPassword', 'KEY_PASSWORD', 'Key password')
+        }
+    }
+
+    // Optional native modules (FILEPAN_* options in CMakeLists.txt), with whether each is built by
+    // default in debug and release builds; override with e.g. -Pfilepan.adirstat=false. adirstat ships
+    // in both, behind an experimental setting.
+    def defaultModules = [adirstat: [debug: true, release: true]]
+    def nativeModules = { boolean debuggable ->
+        defaultModules.collect { name, defaults ->
+            def on = providers.gradleProperty("filepan.${name}").map { it.toBoolean() }
+                    .getOrElse(defaults[debuggable ? 'debug' : 'release'])
+            "-DFILEPAN_${name.toUpperCase()}=${on ? 'ON' : 'OFF'}"
+        }
+    }
+
+    buildTypes {
+        debug {
+            externalNativeBuild {
+                cmake {
+                    arguments(*nativeModules(true))
+                }
+            }
+        }
+        release {
+            externalNativeBuild {
+                cmake {
+                    arguments(*nativeModules(false))
+                }
+            }
+            minifyEnabled = true
+            shrinkResources = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig = signingConfigs.release
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path = 'CMakeLists.txt'
+            // The Nix dev shell sets this to use the CMake found on PATH.
+            def cmakeVersion = providers.environmentVariable('FILEPAN_CMAKE_VERSION').getOrNull()
+            if (cmakeVersion != null) {
+                version = cmakeVersion
+            }
+        }
+    }
+
+    androidResources {
+        generateLocaleConfig = true
+        // Bundled fonts are memory-mapped straight out of the APK, so they must stay stored.
+        noCompress 'ttf'
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+}
+
+dependencies {
+    testImplementation libs.junit
+}
