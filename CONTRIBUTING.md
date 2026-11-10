@@ -8,7 +8,8 @@ English-only while it's being rebuilt, so translations will have to wait.
 FilePan's own code is licensed under the [GNU Affero General Public License, version 3 or
 later](LICENSE). Third-party components keep their own licenses; see [NOTICE](NOTICE).
 
-By submitting a contribution, you agree that it is licensed under AGPL-3.0-or-later. You also
+By submitting a contribution, you agree that it is licensed under AGPL-3.0-or-later, together with
+the additional permission for app stores set out in [NOTICE](NOTICE). You also
 confirm that you have the right to submit it under those terms. There is no contributor license
 agreement. You keep the copyright to your work.
 
