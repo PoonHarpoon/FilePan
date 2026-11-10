@@ -62,6 +62,10 @@ public:
     [[nodiscard]] DirectoryModel &model() const { return *model_; }
     [[nodiscard]] ui::VirtualList &list() const { return *list_; }
     [[nodiscard]] ui::components::BottomDock &dock() const { return *dock_; }
+    [[nodiscard]] ui::components::ScrollThumb &scrollThumb() const { return *scrollThumb_; }
+    // The back-to-top button, shown once the list has scrolled a screen away.
+    [[nodiscard]] ui::Node &topButton() const { return *topButton_; }
+    void scrollToTop();
     // The utilitarian status line: counts, sizes and free space.
     [[nodiscard]] ui::Text &statusText() const { return *statusText_; }
     [[nodiscard]] const std::vector<Item> &items() const { return items_; }
@@ -135,6 +139,8 @@ private:
     std::shared_ptr<DirectoryModel> model_;
     std::shared_ptr<ui::VirtualList> list_;
     std::shared_ptr<ui::components::BottomDock> dock_;
+    std::shared_ptr<ui::components::ScrollThumb> scrollThumb_;
+    std::shared_ptr<ui::Node> topButton_;
     std::shared_ptr<ui::Node> emptySlot_;
     std::shared_ptr<ui::Node> statusLine_;
     std::shared_ptr<ui::Text> statusText_;

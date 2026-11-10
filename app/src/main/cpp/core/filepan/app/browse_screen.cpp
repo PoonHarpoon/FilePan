@@ -199,6 +199,16 @@ void BrowseScreen::construct() {
         return consumed;
     });
     appendChild(list_);
+    // A thin scrollbar to drag through a long folder, and a way back to the top of one.
+    scrollThumb_ = ScrollThumb::create(*list_, [this] { (void)model_->version(); });
+    appendChild(scrollThumb_);
+    topButton_ = GlassPanel({.display = false, .position = Position::absolute, .right = 16}, 24);
+    topButton_->setDebugName("BrowseTop");
+    topButton_->appendChild(IconButton::create({.icon = "vertical_align_top",
+                                                .label = "Back to top",
+                                                .style = IconButtonStyle::plain,
+                                                .onTap = [this] { scrollToTop(); }}));
+    appendChild(topButton_);
 
     emptySlot_ = Box::create([] {
         Style s = fill();
@@ -285,7 +295,20 @@ void BrowseScreen::construct() {
             untrack([&] {
                 const Edges padding{0, top + 6, 0, bottom + bottomClearance() + band};
                 self->list_->updateStyle([&](Style &s) { s.padding = padding; });
+                self->scrollThumb_->updateStyle([&](Style &s) {
+                    s.top = padding.top;
+                    s.bottom = padding.bottom;
+                });
+                self->topButton_->updateStyle([&](Style &s) { s.bottom = padding.bottom + 12; });
                 self->emptySlot_->updateStyle([&](Style &s) { s.padding = {16, top, 16, bottom + bottomClearance()}; });
+            });
+        });
+        // Back to the top, once a screen's worth has scrolled away.
+        bind([self] {
+            const float offset = self->list_->offsetSignal()();
+            untrack([&] {
+                const bool away = offset > std::max(self->list_->viewportExtent(), 1.0f);
+                self->topButton_->updateStyle([&](Style &s) { s.display = away; });
             });
         });
         // The status line: shown in the utilitarian style, over the toolbar.
@@ -1448,5 +1471,7 @@ NodePtr BrowseScreen::sortControls() {
     column->appendChild(rule);
     return column;
 }
+
+void BrowseScreen::scrollToTop() { list_->scrollTo(0, true); }
 
 }  // namespace filepan::app

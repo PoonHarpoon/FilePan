@@ -6,6 +6,7 @@
 // drag, the watcher, settings and tabs that survive a restart, the back stack, opening files and
 // archives, the storage home, thumbnails and accessibility.
 
+#include <cmath>
 #include <archive.h>
 
 #include <algorithm>
@@ -1542,6 +1543,53 @@ void testOverflowView() {
 
 }  // namespace
 
+// A long folder: the thin scrollbar drags through it and widens while held, and back to top
+// shows once a screen has scrolled away. A short folder has neither.
+void testLongFolderScrolling() {
+    Tree tree;
+    for (int i = 0; i < 400; ++i) {
+        makeFile(tree.home / "Many" / ("file " + std::to_string(i) + ".txt"), 10, 2026, 9, 1);
+    }
+    AppHarness h(tree.path(), tree.files.string());
+    h.state().navigate(vfs::Location::local((tree.home / "Many").string()));
+    EXPECT(h.waitUntil([&] { return h.names().size() == 400; }));
+    h.settle();
+    auto &list = h.browse().list();
+    auto &thumb = h.browse().scrollThumb();
+    EXPECT(thumb.geometry().has_value());
+    EXPECT(!h.browse().topButton().style().display);
+
+    // Dragging the thumb down moves the list, the thumb wide while it's held.
+    const gfx::Transform at = ui::components::nodeToWindow(thumb, AppHarness::kDensity);
+    const auto g = *thumb.geometry();
+    const gfx::Vec2 grab{at.tx / AppHarness::kDensity + thumb.frame().width / 2, at.ty / AppHarness::kDensity + g.top + g.length / 2};
+    h.pointer(ui::PointerAction::down, grab);
+    h.pump(30);
+    for (int i = 1; i <= 10; ++i) {
+        h.pointer(ui::PointerAction::move, {grab.x, grab.y + 30.0f * static_cast<float>(i)});
+        h.pump(16);
+    }
+    EXPECT(thumb.expanded());
+    const float dragged = list.offset();
+    EXPECT(dragged > list.viewportExtent());
+    // The thumb kept up with the finger: 300 dp along its travel, less the touch slop a drag
+    // takes to start.
+    EXPECT(std::abs(thumb.geometry()->top - (g.top + 300)) < 12);
+    h.pointer(ui::PointerAction::up, {grab.x, grab.y + 300});
+    h.pump(30);
+    EXPECT(!thumb.expanded());
+
+    EXPECT(h.waitUntil([&] { return h.browse().topButton().style().display; }));
+    h.tap(h.browse().topButton());
+    EXPECT(h.waitUntil([&] { return list.offset() < 0.5f; }));
+    EXPECT(h.waitUntil([&] { return !h.browse().topButton().style().display; }));
+
+    h.state().navigate(vfs::Location::local((tree.home / "Download").string()));
+    EXPECT(h.waitUntil([&] { return h.names().size() < 20 && !h.names().empty(); }));
+    h.settle();
+    EXPECT(!thumb.geometry().has_value());
+}
+
 int main() {
     testFormat();
     testSettingsRoundTrip();
@@ -1574,6 +1622,7 @@ int main() {
     testFavoritesData();
     testFavorites();
     testOverflowView();
+    testLongFolderScrolling();
     testHiddenItems();
     std::puts("app_test: OK");
     return 0;

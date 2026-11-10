@@ -8,6 +8,7 @@
 //   common.hpp      Theme access, color math, haptics, Pressable, focus helpers.
 //   recipes.hpp     The paint recipes: glass, sunken, raised, knob, focus ring, marks.
 //   surfaces.hpp    Background, Glass (GlassPanel), Icon.
+//   scroll_thumb.hpp ScrollThumb: a thin, draggable scrollbar.
 //   buttons.hpp     Button (primary, glass, outline, danger, text), IconButton.
 //   controls.hpp    Switch, SegmentedControl, Slider, Checkbox, MeterRing.
 //   text_field.hpp  TextField and its EditableText.
@@ -29,3 +30,4 @@
 #include "filepan/ui/components/rows.hpp"
 #include "filepan/ui/components/surfaces.hpp"
 #include "filepan/ui/components/text_field.hpp"
+#include "filepan/ui/components/scroll_thumb.hpp"

@@ -115,4 +115,8 @@ Third-party components keep their own licenses; they are listed in
 [licenses.xml](app/src/main/assets/licenses/licenses.xml) and shown in the app under
 About > Licenses. See [NOTICE](NOTICE) for details.
 
+FilePan's own code also carries an app-store exception under section 7 of the AGPL, set out in
+[NOTICE](NOTICE): you may distribute it through third-party stores, as long as its source stays
+freely available and the store listing or the app says where to get it.
+
     Copyright (C) 2026 FilePan contributors (see AUTHORS)

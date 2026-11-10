@@ -14,6 +14,7 @@ add_library(filepan_ui_components STATIC
         overlays.cpp
         recipes.cpp
         rows.cpp
+        scroll_thumb.cpp
         surfaces.cpp
         text_editor.cpp
         text_field.cpp)

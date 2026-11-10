@@ -7,6 +7,27 @@ version 3 or later (LICENSE).
 Based on the work done on Material Files (https://github.com/zhanghai/MaterialFiles)
 by Hai Zhang, unassociated with this project.
 
+Additional permission under GNU AGPL version 3 section 7
+--------------------------------------------------------
+
+As an additional permission under section 7 of the GNU Affero General Public
+License, version 3, the copyright holders of FilePan give you permission to
+convey FilePan, or a work based on it, through an application store or other
+software distribution service, even where the terms of that store or service
+impose restrictions or requirements beyond those of the License, provided that:
+
+  1. the Corresponding Source of the version conveyed is freely available to
+     anyone, at no charge, under the terms of this License; and
+
+  2. the store listing, or the application itself (for example its About
+     screen), states where that Corresponding Source can be obtained.
+
+This permission covers only the restrictions that the store or service imposes
+on its users. It does not let you impose further restrictions yourself, and it
+does not extend to third-party components, which keep their own licenses. You
+may remove this permission from your copy, or from any work based on FilePan,
+as section 7 allows.
+
 File headers
 ------------
 
